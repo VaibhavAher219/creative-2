@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GENPOP - Neobrutalist Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&display=swap');
+
+        * {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Neobrutalist shadows */
+        .brutal-shadow {
+            box-shadow: 8px 8px 0px 0px #000;
+        }
+
+        .brutal-shadow-lg {
+            box-shadow: 12px 12px 0px 0px #000;
+        }
+
+        .brutal-shadow-xl {
+            box-shadow: 16px 16px 0px 0px #000;
+        }
+
+        /* Hover effects */
+        .brutal-hover {
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .brutal-hover:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px 0px #000;
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-right {
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.8) rotate(-5deg);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(3deg); }
+        }
+
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Pulse animation */
+        @keyframes pulse-border {
+            0%, 100% { border-width: 4px; }
+            50% { border-width: 8px; }
+        }
+
+        .pulse-border {
+            animation: pulse-border 2s ease-in-out infinite;
+        }
+
+        /* Glitch effect */
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .glitch:hover {
+            animation: glitch 0.3s ease-in-out;
+        }
+
+        /* Rotating border effect */
+        @keyframes rotate-border {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .rotate-slow {
+            animation: rotate-border 20s linear infinite;
+        }
+
+        /* Background patterns */
+        .dots-pattern {
+            background-image: radial-gradient(circle, #000 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .grid-pattern {
+            background-image:
+                linear-gradient(#000 2px, transparent 2px),
+                linear-gradient(90deg, #000 2px, transparent 2px);
+            background-size: 50px 50px;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #FFD700;
+            border: 3px solid #000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #FF1493;
+            border: 3px solid #000;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00FFFF;
+        }
+    </style>
+</head>
+<body class="bg-yellow-300">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-cyan-400 border-b-8 border-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <h1 class="text-4xl sm:text-5xl font-black tracking-tight glitch cursor-pointer">
+                    GENPOP
+                </h1>
+                <div class="hidden md:flex space-x-2">
+                    <a href="#hero" class="px-6 py-2 bg-pink-500 text-white font-bold border-4 border-black brutal-shadow brutal-hover">
+                        HOME
+                    </a>
+                    <a href="#features" class="px-6 py-2 bg-lime-400 text-black font-bold border-4 border-black brutal-shadow brutal-hover">
+                        FEATURES
+                    </a>
+                    <a href="#gallery" class="px-6 py-2 bg-purple-500 text-white font-bold border-4 border-black brutal-shadow brutal-hover">
+                        GALLERY
+                    </a>
+                    <a href="#contact" class="px-6 py-2 bg-orange-500 text-white font-bold border-4 border-black brutal-shadow brutal-hover">
+                        CONTACT
+                    </a>
+                </div>
+                <!-- Mobile menu button -->
+                <button class="md:hidden px-4 py-2 bg-pink-500 border-4 border-black font-black text-2xl brutal-shadow">
+                    ☰
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative pt-20 px-4 overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute top-20 left-10 w-32 h-32 bg-pink-500 border-8 border-black rotate-12 float"></div>
+        <div class="absolute top-40 right-20 w-24 h-24 bg-lime-400 border-8 border-black -rotate-12 float" style="animation-delay: 0.5s;"></div>
+        <div class="absolute bottom-20 left-1/4 w-40 h-40 bg-purple-500 border-8 border-black rotate-45 float" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/3 right-10 w-20 h-20 bg-orange-500 border-8 border-black float" style="animation-delay: 1.5s;"></div>
+
+        <div class="max-w-6xl mx-auto text-center relative z-10 fade-in">
+            <div class="mb-8 inline-block">
+                <h2 class="text-7xl sm:text-9xl font-black mb-4 tracking-tighter leading-none">
+                    <span class="inline-block bg-cyan-400 border-8 border-black px-6 py-2 brutal-shadow-xl rotate-2 glitch">
+                        WELCOME
+                    </span>
+                </h2>
+                <h2 class="text-7xl sm:text-9xl font-black tracking-tighter leading-none">
+                    <span class="inline-block bg-pink-500 text-white border-8 border-black px-6 py-2 brutal-shadow-xl -rotate-2 glitch">
+                        TO THE
+                    </span>
+                </h2>
+                <h2 class="text-7xl sm:text-9xl font-black tracking-tighter leading-none">
+                    <span class="inline-block bg-lime-400 border-8 border-black px-6 py-2 brutal-shadow-xl rotate-1 glitch">
+                        FUTURE
+                    </span>
+                </h2>
+            </div>
+
+            <p class="text-2xl sm:text-3xl font-bold mb-12 max-w-3xl mx-auto bg-white border-6 border-black p-6 brutal-shadow-lg">
+                A BRUTALLY HONEST APPROACH TO MODERN WEB DESIGN. NO COMPROMISES. PURE CREATIVITY.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="px-12 py-6 bg-pink-500 text-white text-2xl font-black border-6 border-black brutal-shadow-lg brutal-hover">
+                    GET STARTED
+                </button>
+                <button class="px-12 py-6 bg-purple-500 text-white text-2xl font-black border-6 border-black brutal-shadow-lg brutal-hover">
+                    LEARN MORE
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4 bg-pink-500 border-y-8 border-black">
+        <div class="max-w-7xl mx-auto">
+            <h3 class="text-6xl sm:text-8xl font-black text-center mb-16 slide-left">
+                <span class="inline-block bg-yellow-300 border-8 border-black px-8 py-4 brutal-shadow-xl -rotate-2">
+                    FEATURES
+                </span>
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature Card 1 -->
+                <div class="fade-in bg-cyan-400 border-8 border-black p-8 brutal-shadow-lg brutal-hover" style="transition-delay: 0.1s;">
+                    <div class="text-6xl mb-4 rotate-12 inline-block">🚀</div>
+                    <h4 class="text-3xl font-black mb-4">BLAZING FAST</h4>
+                    <p class="text-lg font-bold">Lightning speed performance that leaves competitors in the dust. No lag, no waiting.</p>
+                </div>
+
+                <!-- Feature Card 2 -->
+                <div class="fade-in bg-lime-400 border-8 border-black p-8 brutal-shadow-lg brutal-hover -rotate-2" style="transition-delay: 0.2s;">
+                    <div class="text-6xl mb-4 -rotate-12 inline-block">💎</div>
+                    <h4 class="text-3xl font-black mb-4">CRYSTAL CLEAR</h4>
+                    <p class="text-lg font-bold">Pixel-perfect design that makes every element pop with stunning clarity.</p>
+                </div>
+
+                <!-- Feature Card 3 -->
+                <div class="fade-in bg-purple-500 text-white border-8 border-black p-8 brutal-shadow-lg brutal-hover rotate-1" style="transition-delay: 0.3s;">
+                    <div class="text-6xl mb-4 rotate-6 inline-block">🎨</div>
+                    <h4 class="text-3xl font-black mb-4">BOLD COLORS</h4>
+                    <p class="text-lg font-bold">Eye-catching color schemes that demand attention and leave lasting impressions.</p>
+                </div>
+
+                <!-- Feature Card 4 -->
+                <div class="fade-in bg-orange-500 text-white border-8 border-black p-8 brutal-shadow-lg brutal-hover -rotate-1" style="transition-delay: 0.4s;">
+                    <div class="text-6xl mb-4 -rotate-6 inline-block">⚡</div>
+                    <h4 class="text-3xl font-black mb-4">ELECTRIC VIBES</h4>
+                    <p class="text-lg font-bold">Energy that radiates from every pixel, creating unforgettable user experiences.</p>
+                </div>
+
+                <!-- Feature Card 5 -->
+                <div class="fade-in bg-yellow-300 border-8 border-black p-8 brutal-shadow-lg brutal-hover rotate-2" style="transition-delay: 0.5s;">
+                    <div class="text-6xl mb-4 rotate-12 inline-block">🎯</div>
+                    <h4 class="text-3xl font-black mb-4">LASER FOCUSED</h4>
+                    <p class="text-lg font-bold">Precision-crafted interfaces that guide users exactly where they need to go.</p>
+                </div>
+
+                <!-- Feature Card 6 -->
+                <div class="fade-in bg-pink-400 border-8 border-black p-8 brutal-shadow-lg brutal-hover -rotate-1" style="transition-delay: 0.6s;">
+                    <div class="text-6xl mb-4 -rotate-12 inline-block">🔥</div>
+                    <h4 class="text-3xl font-black mb-4">FIRE STYLE</h4>
+                    <p class="text-lg font-bold">Hot designs that break conventions and set new standards for creativity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 px-4 bg-lime-400 border-b-8 border-black">
+        <div class="max-w-7xl mx-auto">
+            <h3 class="text-6xl sm:text-8xl font-black text-center mb-16 slide-right">
+                <span class="inline-block bg-cyan-400 border-8 border-black px-8 py-4 brutal-shadow-xl rotate-1">
+                    GALLERY
+                </span>
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="scale-in bg-purple-500 border-8 border-black h-64 brutal-shadow-lg brutal-hover flex items-center justify-center" style="transition-delay: 0.1s;">
+                    <div class="text-center">
+                        <div class="text-8xl mb-4 float">🌈</div>
+                        <p class="text-white text-2xl font-black">VIVID IMAGINATION</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 2 -->
+                <div class="scale-in bg-orange-500 border-8 border-black h-64 brutal-shadow-lg brutal-hover flex items-center justify-center rotate-2" style="transition-delay: 0.2s;">
+                    <div class="text-center">
+                        <div class="text-8xl mb-4 float" style="animation-delay: 0.5s;">✨</div>
+                        <p class="text-white text-2xl font-black">SPARKLING DETAILS</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 3 -->
+                <div class="scale-in bg-cyan-400 border-8 border-black h-64 brutal-shadow-lg brutal-hover flex items-center justify-center -rotate-1" style="transition-delay: 0.3s;">
+                    <div class="text-center">
+                        <div class="text-8xl mb-4 float" style="animation-delay: 1s;">🎪</div>
+                        <p class="text-black text-2xl font-black">CREATIVE CIRCUS</p>
+                    </div>
+                </div>
+
+                <!-- Gallery Item 4 -->
+                <div class="scale-in bg-pink-500 border-8 border-black h-64 brutal-shadow-lg brutal-hover flex items-center justify-center rotate-1" style="transition-delay: 0.4s;">
+                    <div class="text-center">
+                        <div class="text-8xl mb-4 float" style="animation-delay: 1.5s;">🌟</div>
+                        <p class="text-white text-2xl font-black">STELLAR DESIGN</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 px-4 bg-purple-500 border-b-8 border-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="fade-in bg-yellow-300 border-8 border-black p-8 text-center brutal-shadow-lg rotate-2" style="transition-delay: 0.1s;">
+                    <div class="text-6xl font-black mb-2">1000+</div>
+                    <p class="text-xl font-bold">HAPPY USERS</p>
+                </div>
+                <div class="fade-in bg-cyan-400 border-8 border-black p-8 text-center brutal-shadow-lg -rotate-1" style="transition-delay: 0.2s;">
+                    <div class="text-6xl font-black mb-2">99%</div>
+                    <p class="text-xl font-bold">SATISFACTION</p>
+                </div>
+                <div class="fade-in bg-pink-500 text-white border-8 border-black p-8 text-center brutal-shadow-lg rotate-1" style="transition-delay: 0.3s;">
+                    <div class="text-6xl font-black mb-2">24/7</div>
+                    <p class="text-xl font-bold">SUPPORT</p>
+                </div>
+                <div class="fade-in bg-lime-400 border-8 border-black p-8 text-center brutal-shadow-lg -rotate-2" style="transition-delay: 0.4s;">
+                    <div class="text-6xl font-black mb-2">∞</div>
+                    <p class="text-xl font-bold">POSSIBILITIES</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 px-4 bg-cyan-400 border-b-8 border-black">
+        <div class="max-w-6xl mx-auto">
+            <h3 class="text-6xl sm:text-8xl font-black text-center mb-16 fade-in">
+                <span class="inline-block bg-pink-500 text-white border-8 border-black px-8 py-4 brutal-shadow-xl -rotate-2">
+                    TESTIMONIALS
+                </span>
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="slide-left bg-yellow-300 border-8 border-black p-8 brutal-shadow-lg rotate-1">
+                    <p class="text-2xl font-bold mb-4">"THIS IS ABSOLUTELY INSANE! I'VE NEVER SEEN ANYTHING LIKE IT!"</p>
+                    <p class="text-xl font-black">- CREATIVE DESIGNER</p>
+                </div>
+                <div class="slide-right bg-lime-400 border-8 border-black p-8 brutal-shadow-lg -rotate-1">
+                    <p class="text-2xl font-bold mb-4">"GENPOP CHANGED THE GAME. THIS IS THE FUTURE OF WEB DESIGN!"</p>
+                    <p class="text-xl font-black">- TECH INNOVATOR</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 bg-orange-500 border-b-8 border-black">
+        <div class="max-w-4xl mx-auto">
+            <h3 class="text-6xl sm:text-8xl font-black text-center mb-16 scale-in">
+                <span class="inline-block bg-white border-8 border-black px-8 py-4 brutal-shadow-xl rotate-2">
+                    GET IN TOUCH
+                </span>
+            </h3>
+
+            <div class="fade-in bg-yellow-300 border-8 border-black p-8 brutal-shadow-xl">
+                <form class="space-y-6">
+                    <div>
+                        <input type="text" placeholder="YOUR NAME" class="w-full px-6 py-4 text-xl font-bold border-6 border-black brutal-shadow focus:outline-none focus:translate-x-1 focus:translate-y-1 transition-transform">
+                    </div>
+                    <div>
+                        <input type="email" placeholder="YOUR EMAIL" class="w-full px-6 py-4 text-xl font-bold border-6 border-black brutal-shadow focus:outline-none focus:translate-x-1 focus:translate-y-1 transition-transform">
+                    </div>
+                    <div>
+                        <textarea placeholder="YOUR MESSAGE" rows="5" class="w-full px-6 py-4 text-xl font-bold border-6 border-black brutal-shadow focus:outline-none focus:translate-x-1 focus:translate-y-1 transition-transform resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full px-12 py-6 bg-pink-500 text-white text-2xl font-black border-6 border-black brutal-shadow-lg brutal-hover">
+                        SEND MESSAGE
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 px-4 border-t-8 border-yellow-300">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div class="fade-in">
+                    <h4 class="text-4xl font-black mb-4 text-cyan-400">GENPOP</h4>
+                    <p class="text-lg font-bold">Breaking boundaries. Creating futures.</p>
+                </div>
+                <div class="fade-in">
+                    <h5 class="text-2xl font-black mb-4 text-pink-500">QUICK LINKS</h5>
+                    <ul class="space-y-2 font-bold">
+                        <li><a href="#hero" class="hover:text-yellow-300 transition-colors">Home</a></li>
+                        <li><a href="#features" class="hover:text-yellow-300 transition-colors">Features</a></li>
+                        <li><a href="#gallery" class="hover:text-yellow-300 transition-colors">Gallery</a></li>
+                        <li><a href="#contact" class="hover:text-yellow-300 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="fade-in">
+                    <h5 class="text-2xl font-black mb-4 text-lime-400">CONNECT</h5>
+                    <div class="flex space-x-4">
+                        <div class="w-12 h-12 bg-pink-500 border-4 border-white flex items-center justify-center font-black text-xl cursor-pointer brutal-hover">
+                            T
+                        </div>
+                        <div class="w-12 h-12 bg-cyan-400 border-4 border-white flex items-center justify-center font-black text-xl cursor-pointer brutal-hover">
+                            I
+                        </div>
+                        <div class="w-12 h-12 bg-purple-500 border-4 border-white flex items-center justify-center font-black text-xl cursor-pointer brutal-hover">
+                            F
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center pt-8 border-t-4 border-white">
+                <p class="text-lg font-black">© 2025 GENPOP. ALL RIGHTS RESERVED. STAY BRUTAL.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <button id="scrollTop" class="fixed bottom-8 right-8 w-16 h-16 bg-pink-500 border-6 border-black text-white text-3xl font-black brutal-shadow-lg brutal-hover hidden z-50">
+        ↑
+    </button>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.remove('hidden');
+            } else {
+                scrollTopBtn.classList.add('hidden');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add parallax effect to floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const floatingElements = document.querySelectorAll('.float');
+            floatingElements.forEach((el, index) => {
+                const speed = 0.5 + (index * 0.1);
+                el.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.05}deg)`;
+            });
+        });
+
+        // Random color change on click for buttons
+        const buttons = document.querySelectorAll('button');
+        const colors = ['bg-pink-500', 'bg-cyan-400', 'bg-lime-400', 'bg-purple-500', 'bg-orange-500', 'bg-yellow-300'];
+
+        buttons.forEach(button => {
+            button.addEventListener('mousedown', function() {
+                this.style.transform = 'translate(4px, 4px)';
+                this.style.boxShadow = '4px 4px 0px 0px #000';
+            });
+
+            button.addEventListener('mouseup', function() {
+                this.style.transform = '';
+                this.style.boxShadow = '';
+            });
+        });
+
+        // Form submission
+        const form = document.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('MESSAGE SENT! WE\'LL GET BACK TO YOU SOON!');
+            form.reset();
+        });
+    </script>
+</body>
+</html>
